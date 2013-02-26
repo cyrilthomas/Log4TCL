@@ -1,0 +1,68 @@
+<!--
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+Log4TCL Configuration File
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-    
+        fatal   |   Lowest Verbosity
+        error   |
+        warn    |
+        info    |
+        debug   V   Highest Verbosity
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+ Settings Description :
+    debugLevel  : Set the verbosity level
+    timeZone    : Timezone for the log timestamp
+    log         : stout, stderr or any fully qualified log filename
+    prefix      : Any free text
+                  Additionally the keyword "tree" would display the log
+                  in the call stack tree format
+                  The keyword "filename" will log the executing scriptname
+    callTrace   : Works only with the prefix "tree" keyword
+                  Traces back to the entire proc call stack history
+    dateFormat  : Set the log date format
+    levelInfo   : Turn on/off logging the verbosity level details
+    
+    Advanced Options
+              
+    logExceptions           : Supress message groups
+                              More than one config modes can be specified 
+                              seperated by space
+                              The default is <logExceptions></logExceptions>
+    defaultLevelOverride    : Overides the individual message group debug level 
+                              and sets it to the default debug level
+                              The default is "off"
+    
+    This option has been removed from v1.2.1 onwards
+    reloadConfigInterval    : The interval at which the config file itself will be
+                              re-read for any config changes
+-->
+
+<Log4TCL>
+    <reloadConfigInterval>10</reloadConfigInterval>
+    <defaultLevelOverride>off</defaultLevelOverride>
+    <logExceptions></logExceptions>
+    
+    <mode id="default">
+        <debugLevel>debug</debugLevel>  
+        <timeZone>GMT</timeZone>
+        <log>stdout</log>
+        <prefix>new-default</prefix>        
+        <callTrace>off</callTrace>
+        <dateFormat>%d-%m-%y %H:%M:%S</dateFormat>
+        <levelInfo>on</levelInfo>
+        <logRotationFrequency>1m</logRotationFrequency>
+    </mode>
+    
+    <mode id="test">
+        <debugLevel>debug</debugLevel>
+        <timeZone>Asia/Calcutta</timeZone>
+        <log>stdout</log>
+        <prefix>tree</prefix>   
+        <callTrace>on</callTrace>
+        <dateFormat>%d-%m-%y %H:%M:%S</dateFormat>
+        <levelInfo>on</levelInfo>
+        <logRotationFrequency>3m</logRotationFrequency>
+    </mode> 
+    
+</Log4TCL>

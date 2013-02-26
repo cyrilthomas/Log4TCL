@@ -1,0 +1,41 @@
+ Log4TCL - A TCL Logger
+ Written by Cyril Thomas George (thomas.cyril@gmail.com)
+
+ Change log
+
+ v1.0 / 28-10-2010
+    * Initial version
+    
+ v1.1 / 22-08/2011
+    * Code cleanups
+    * Support for multiple configuration modes
+    * Reloading of config file after a definite interval
+    * Extended proc stack tracing
+    
+ v1.2 / 23-08/2011
+    * Introduced object oriented like features
+        - Create log objects
+            set x [Log4TCL::RegisterLog <config_name>]
+        - Easy calls the log object
+            $x->Debug "This is a sample debug message"
+        - Allows to manupulate mutiple configs instances
+        within the same script
+    * Default Level Override option
+    * Skip logging unwanted log modes by
+      adding modes in the <logExceptions/> config tag
+      
+ v1.2.1 / 08-09-2011
+    * Bug fixes
+    * Removed reloading of config file on fixed interval
+      Config file will be reloaded based on the last modified
+      timestamp of the config file
+    * Minor stack tree display fixes
+    * Added flexibility for the config xml location
+      and mode switching between across multiple config files
+    * Destroy individual / all objects created
+
+ v1.2.2 / 20-10-2011
+    * Code clean up and minor performance tweaks
+    * Removed DestroyAllObjects proc
+    * Removed LoadConfigXML, its ChangeConfig now
+        - usage example : Log4TCL::ChangeConfig default a.xml
