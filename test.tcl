@@ -1,6 +1,5 @@
 #!/opt/oss/bin/tclsh
 
-lappend auto_path /Users/cyrilthomas/Desktop 
 package require Log4TCL
 
 set logger [Log4TCL::RegisterLog "rpc"] ;# creates a new loggeer instance
