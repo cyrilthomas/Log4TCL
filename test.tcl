@@ -1,4 +1,4 @@
-#!/opt/oss/bin/tclsh
+#!/usr/bin/tclsh
 
 package require Log4TCL
 
