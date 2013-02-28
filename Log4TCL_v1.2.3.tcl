@@ -1,4 +1,4 @@
-#!/opt/oss/bin/tclsh
+#!/usr/bin/tclsh
 
 #---------------------------------------------------------
 # Log4TCL - A TCL Logger
