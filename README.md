@@ -99,15 +99,6 @@ proc test_debug { } {
 ```
 
 Changes in the config xml gets reflected immediately
-```
-set cnt 5
-while { $cnt } {
-    test_debug    
-    after 5000    
-    incr cnt -1    
-    $r fatal "Obj Calculator => 5 + 5 = [expr 5 + 5]"    
-}
-```
 
 ### Switching modes in the new config file (Remember you switched to a new config)
 ```
