@@ -1,5 +1,4 @@
-Log4TCL
-=======
+## Log4TCL
 
 Log4TCL is a Logger for logging you application messages / logs
 based on the verbosity level specified in the config.xml file
@@ -10,146 +9,108 @@ based on the verbosity level specified in the config.xml file
 Check the config.xml file for details on each configuration supported
 by Log4TCL
 
---------------------------------------------------------------------------------
-Usage
---------------------------------------------------------------------------------
+
+## Usage
 Include new library paths if required as below
+```
 lappend auto_path /host/lib
-
 package require Log4TCL
+```
 
---------------------------------------------------------------------------------
-Displays the loaded Log4TCL Version
---------------------------------------------------------------------------------
-puts $Log4TCL::Version
+### Displays the loaded Log4TCL Version
+```puts $Log4TCL::Version```
 
---------------------------------------------------------------------------------
-Displays the changelog
---------------------------------------------------------------------------------
-puts $Log4TCL::ChangeLog
+### Displays the changelog
+```puts $Log4TCL::ChangeLog```
 
---------------------------------------------------------------------------------
-Normal Usage
---------------------------------------------------------------------------------
+### The logger
+```
 Log4TCL::Info "Calculator => 5 + 5 = [expr 5 + 5]"
-
 Log4TCL::Fatal "Calculator => 5 + 5 = [expr 5 + 5]"
+```
 
---------------------------------------------------------------------------------
-Changing config mode
---------------------------------------------------------------------------------
+# Changing config mode
 Switching to other config modes in the default config file
 The Log4TCL config can have mutiple configuration modes / modes each
 having different timezone or dateformat or prefix or debuglevel .. etc
 The default mode would be "default" in the config.xml
 You can override it with your own custom mode as below
 
---------------------------------------------------------------------------------
+```
 Log4TCL::SwitchConfigMode test
-
 Log4TCL::Fatal "Calculator => 5 + 5 = [expr 5 + 5]"
+```
 
---------------------------------------------------------------------------------
-Changing config file
---------------------------------------------------------------------------------
+# Changing config file
 Provide the new config xml file and optionally the mode to load, else 
 the default mode will be loaded
-
---------------------------------------------------------------------------------
+```
 Log4TCL::LoadConfigXML c:\\Tcl\\lib\\Log4TCL\\newconf.xml test
-
 Log4TCL::Fatal "Calculator => 5 + 5 = [expr 5 + 5]"
+```
 
---------------------------------------------------------------------------------
-Object oriented style usage
---------------------------------------------------------------------------------
-
+# Object oriented style usage
 This gives a better flexibility to create different logger instances
 with different config modes
 
+```
 set r1 [Log4TCL::RegisterLog rpc1]
-
 set r2 [Log4TCL::RegisterLog rpc2]
-
 $r1 debug "Obj Calculator => 5 + 5 = [expr 5 + 5]"
-
 $r2 fatal "Obj Calculator => 5 + 5 = [expr 5 + 5]"
+```
 
---------------------------------------------------------------------------------
-Destroy an object
---------------------------------------------------------------------------------
+## Destroy an object
+```
 $r destroy
-
 $r fatal "Calculator => 5 + 5 = [expr 5 + 5]" ;#should throw error
+```
 
---------------------------------------------------------------------------------
+# Other Features
 One of the powerful features of Log4TCL is that you can see the depth of
 you program stack if you have set the prefix as "tree" in your config file
 This feature is illustrated below
 
---------------------------------------------------------------------------------
-
+```
 proc test_fatal { } {
-
     Log4TCL::Fatal "Yes this is a fatal message  !!"
-    
 }
 
 proc test_error { } {
-
-    Log4TCL::Error "Yes this is a error message !"
-    
-    test_fatal
-    
+    Log4TCL::Error "Yes this is a error message !"    
+    test_fatal    
 }
 
 proc test_warn { } {
-
-    Log4TCL::Warn "Yes this is a warn message"
-    
-    test_error
-    
+    Log4TCL::Warn "Yes this is a warn message"    
+    test_error  
 }
 
 proc test_info { } {
-
-    Log4TCL::Info "Yes this is a info message"
-    
-    test_warn
-    
+    Log4TCL::Info "Yes this is a info message"    
+    test_warn    
 }
 
-proc test_debug { } {
-    
-    Log4TCL::Debug "Yes this is a debug message"    
-    
-    test_info
-    
-    Log4TCL::Debug "Finished debug message" 
-    
+proc test_debug { } {    
+    Log4TCL::Debug "Yes this is a debug message"        
+    test_info    
+    Log4TCL::Debug "Finished debug message"     
 }
+```
 
---------------------------------------------------------------------------------
-Try changing the config xml while this loop is running 
-you should see the changes getting reflected immediately
---------------------------------------------------------------------------------
+Changes in the config xml gets reflected immediately
+```
 set cnt 5
-
 while { $cnt } {
-
-    test_debug
-    
-    after 5000
-    
-    incr cnt -1
-    
-    $r fatal "Obj Calculator => 5 + 5 = [expr 5 + 5]"
-    
+    test_debug    
+    after 5000    
+    incr cnt -1    
+    $r fatal "Obj Calculator => 5 + 5 = [expr 5 + 5]"    
 }
+```
 
---------------------------------------------------------------------------------
-Switching modes in the new config file (Remember you switched to a new config)
---------------------------------------------------------------------------------
+### Switching modes in the new config file (Remember you switched to a new config)
+```
 Log4TCL::SwitchConfigMode default
-
 Log4TCL::Fatal "Calculator => 5 + 5 = [expr 5 + 5]"
+```
